@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "CMakeFiles/lab4Work.dir/ExtendedTime.cpp.o",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}

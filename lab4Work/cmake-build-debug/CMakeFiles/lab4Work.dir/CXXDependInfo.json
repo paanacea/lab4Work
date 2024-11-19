@@ -1,0 +1,18 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "/home/iusearchbtw/CLionProjects/lab4Work/cmake-build-debug",
+	"dir-cur-src" : "/home/iusearchbtw/CLionProjects/lab4Work",
+	"dir-top-bld" : "/home/iusearchbtw/CLionProjects/lab4Work/cmake-build-debug",
+	"dir-top-src" : "/home/iusearchbtw/CLionProjects/lab4Work",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/iusearchbtw/CLionProjects/lab4Work/cmake-build-debug/CMakeFiles/lab4Work.dir"
+}

@@ -1,0 +1,3 @@
+/home/iusearchbtw/CLionProjects/lab4Work/cmake-build-debug/CMakeFiles/lab4Work.dir
+/home/iusearchbtw/CLionProjects/lab4Work/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/iusearchbtw/CLionProjects/lab4Work/cmake-build-debug/CMakeFiles/rebuild_cache.dir
