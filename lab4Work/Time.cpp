@@ -11,29 +11,29 @@ void Time::validateTime() {
 // Конструкторы
 Time::Time() : hours(0), minutes(0) {}
 
-Time::Time(unsigned char h, unsigned char m) : hours(h), minutes(m) {
+Time::Time(byte h, byte m) : hours(h), minutes(m) {
     validateTime();
 }
 
 Time::Time(const Time& other) : hours(other.hours), minutes(other.minutes) {}
 
 // Методы доступа
-unsigned char Time::getHours() const { return hours; }
-unsigned char Time::getMinutes() const { return minutes; }
+byte Time::getHours() const { return hours; }
+byte Time::getMinutes() const { return minutes; }
 
-void Time::setHours(unsigned char h) {
+void Time::setHours(byte h) {
     hours = h;
     validateTime();
 }
 
-void Time::setMinutes(unsigned char m) {
+void Time::setMinutes(byte m) {
     minutes = m;
     validateTime();
 }
 
 // Добавление произвольного количества минут
 Time Time::addMinutes(unsigned int addMinutes) const {
-    unsigned totalMinutes = hours * 60 + minutes + addMinutes;
+    unsigned totalMinutes = static_cast<int>(hours) * 60 + static_cast<int>(minutes) + addMinutes;
     unsigned newHours = (totalMinutes / 60) % 24;
     unsigned newMinutes = totalMinutes % 60;
     return Time(newHours, newMinutes);
@@ -52,9 +52,9 @@ Time Time::operator++(int) {
 }
 
 Time& Time::operator--() {
-    if (minutes == 0) {
+    if (static_cast<int>(minutes) == 0) {
         minutes = 59;
-        hours = (hours == 0) ? 23 : hours - 1;
+        hours = (static_cast<int>(hours) == 0) ? 23 : hours - 1;
     } else {
         --minutes;
     }
@@ -73,30 +73,32 @@ Time::operator short int() const {
 }
 
 Time::operator bool() const {
-    return hours != 0 || minutes != 0;
+    return static_cast<int>(hours) != 0 || static_cast<int>(minutes) != 0;
 }
 
 // Бинарные операции
 Time Time::operator+(unsigned int minutesToAdd) const {
-    unsigned int totalMinutes = hours * 60 + minutes + minutesToAdd; // Считаем общее количество минут
-    unsigned char newHours = (totalMinutes / 60) % 24; // Преобразуем в часы (с учетом переполнения суток)
-    unsigned char newMinutes = totalMinutes % 60;      // Вычисляем минуты
+    unsigned int totalMinutes = static_cast<int>(hours) * 60 + static_cast<int>(minutes) + minutesToAdd;
+    byte newHours = static_cast<byte>((totalMinutes / 60) % 24);
+    byte newMinutes = static_cast<byte>(totalMinutes % 60);
     return Time(newHours, newMinutes);
 }
 
 Time Time::operator-(unsigned int minutesToSubtract) const {
-    int totalMinutes = (hours * 60 + minutes ) - minutesToSubtract; // Вычитаем минуты
+    int totalMinutes = (static_cast<int>(hours) * 60 + static_cast<int>(minutes)) - minutesToSubtract;
+
     if (totalMinutes < 0) {
-        totalMinutes = (24 * 60 + totalMinutes) % (24 * 60); // Учет отрицательного времени, с переходом через полночь
+        totalMinutes = (24 * 60 + totalMinutes) % (24 * 60);
     }
-    unsigned char newHours = (totalMinutes / 60) % 24; // Преобразуем в часы
-    unsigned char newMinutes = totalMinutes % 60;      // Вычисляем минуты
+
+    byte newHours = static_cast<byte>((totalMinutes / 60) % 24);
+    byte newMinutes = static_cast<byte>(totalMinutes % 60);
     return Time(newHours, newMinutes);
 }
 
 // Перегрузка оператора вывода
 std::ostream& operator<<(std::ostream& os, const Time& time) {
-    os << (time.hours < 10 ? "0" : "") << static_cast<int>(time.hours) << ":"
-       << (time.minutes < 10 ? "0" : "") << static_cast<int>(time.minutes);
+    os << (static_cast<int>(time.hours) < 10 ? "0" : "") << static_cast<int>(time.hours) << ":"
+       << (static_cast<int>(time.minutes) < 10 ? "0" : "") << static_cast<int>(time.minutes);
     return os;
 }
