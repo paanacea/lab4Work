@@ -3,24 +3,26 @@
 
 #include <iostream>
 
+using byte = unsigned char; // Определяем byte как unsigned char
+
 class Time {
 private:
-    unsigned char hours;   // Часы (0-23)
-    unsigned char minutes; // Минуты (0-59)
+    byte hours;   // Часы (0-23)
+    byte minutes; // Минуты (0-59)
 
     void validateTime(); // Проверка корректности времени
 
 public:
     // Конструкторы
     Time();
-    Time(unsigned char h, unsigned char m);
+    Time(byte h, byte m);
     Time(const Time& other);
 
     // Методы доступа
-    unsigned char getHours() const;
-    unsigned char getMinutes() const;
-    void setHours(unsigned char h);
-    void setMinutes(unsigned char m);
+    byte getHours() const;
+    byte getMinutes() const;
+    void setHours(byte h);
+    void setMinutes(byte m);
 
     // Добавление произвольного количества минут
     Time addMinutes(unsigned int addMinutes) const;
@@ -37,7 +39,6 @@ public:
 
     // Бинарные операции
     Time operator+(unsigned int addMinutes) const;
-
     Time operator-(unsigned int subMinutes) const;
 
     // Перегрузка оператора вывода
